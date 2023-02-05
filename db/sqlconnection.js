@@ -1,6 +1,6 @@
-const connection = require("./sqlconnection")
+const connection = require("./sqlconnection");
 // TO CONNECT TO SQL DATABASE
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
     {
       host: 'localhost',
       // MySQL username,
@@ -13,4 +13,3 @@ const db = mysql.createConnection(
   );
 
   module.exports = connection;
-  
