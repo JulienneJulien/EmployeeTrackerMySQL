@@ -13,3 +13,23 @@ app.listen(PORT, () => console.log(' Server Listening on port ' + PORT));
 // EXPRESS MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// INTRO
+console.log('Welcome to my Employee_Tracker_App!');
+// USER MENU PROMPTS
+const menuPrompts = () => {
+    return inquirer .prompt({
+            name: "userChoices",
+            type: 'list',
+            message: 'Please select what you would like to do.',
+            choices: [
+                'View All Departments',
+                'View All Roles',
+                'View All Employees',
+                'Add A Department',     
+                'Add A Role',
+                'Add A Employee',
+                'Update An Employee Role',
+                'Exit Menu',
+            ],
+        })
+};
