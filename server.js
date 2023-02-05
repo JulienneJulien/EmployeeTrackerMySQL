@@ -13,6 +13,20 @@ app.listen(PORT, () => console.log(' Server Listening on port ' + PORT));
 // EXPRESS MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// TO CONNECT TO SQL DATABASE
+const connection = mysql.createConnection(
+    {
+      host: 'localhost',
+      // MySQL username,
+      user: 'root',
+      // MySQL password
+      password: 'Pass',
+      database: 'Business_db'
+    },
+    console.log(`Connected to the Business_db database.`)
+  );
+
 // INTRO
 console.log('Welcome to my Employee_Tracker_App!');
 // USER MENU PROMPTS
@@ -58,19 +72,120 @@ const menuPrompts = () =>
     if (choices === 'Update An Employee Role') {
       updateEmployee();
     }
-    if (choices === "No Action") {
-      connection.end()
+    if (choices === "Exit Menu") {
+      console.log('Thank you for using my Employee_Tracker_App!')  
+      connection.end();
   };
 });
 
 // VIEW ALL DEPARTMENTS
-viewDepartments = () => {
-    console.log('Viewing all departments...\n');
-    const sql = `SELECT department.id AS id, department.name AS department FROM department`; 
-  
-    connection.promise().query(sql, (err, rows) => {
+const viewDepartments = () => {
+    const query = `SELECT * FROM departments`;
+    connection.query(query, (err, departments) => {
       if (err) throw err;
-      console.table(rows);
-      menuPrompts();
+      console.table(departments);
+      start();
+  
     });
   };
+  // VIEW ALL ROLES
+  const viewRoles = () => {
+    const query = `SELECT * FROM role`;
+    connection.query(query, (err, role) => {
+      if (err) throw err;
+      console.table(role);
+      start();
+  
+    });
+  };
+  // VIEW ALL EMPLOYEES
+  const viewEmployees = () => {
+    const query = `SELECT * FROM employees`;
+    connection.query(query, (err, employees) => {
+      if (err) throw err;
+      console.table(employees);
+      start();
+  
+    });
+  };
+// ADD DEPARTMENT TO DEPARTMENT TABLE
+const addDepartment = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'newDepartment',
+                message: 'What Department would you like to add?'
+            },
+        ])
+        .then((data) => {
+            connection.query('INSERT INTO department SET ?',
+                {
+                    name: data.newDepartment,
+                },
+                function (err) {
+                    if (err) throw err;
+                }
+            );
+            console.log('New department has been added!')
+            viewDepartments();
+        });
+};
+
+// ADD A ROLE TO ROLE TABLE
+const addRole = () => {
+    connection.query('SELECT * FROM department', (err, departments) => {
+        if (err) console.log(err);
+        departments = departments.map((department) => {
+            return {
+                name: department.name,
+                value: department.id,
+            };
+        });
+        inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'newRole',
+                    message: 'What is the title of the new role?'
+                },
+                {
+                    type: 'input',
+                    name: 'salary',
+                    message: 'What is the salary for the new role?',
+                },
+                {
+                    type: 'list',
+                    name: 'departmentId',
+                    message: 'What department is the new role for?',
+                    choices: departments,
+                },
+            ])
+            .then((data) => {
+                connection.query(
+                    'INSERT INTO role SET ?',
+                    {
+                        title: data.newRole,
+                        salary: data.salary,
+                        department_id: data.departmentId,
+                    },
+                    function (err) {
+                        if (err) throw err;
+                    }
+                );
+                console.log('New role has been added!')
+                viewRoles();
+            });
+
+    });
+
+};
+
+// ADD AN EMPLOYEE TO EMPLOYEES TABLE
+connection.connect((err) => {
+    if (err) throw err;
+
+
+    menuPrompts();
+
+});
