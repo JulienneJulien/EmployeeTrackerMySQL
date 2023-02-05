@@ -182,10 +182,67 @@ const addRole = () => {
 };
 
 // ADD AN EMPLOYEE TO EMPLOYEES TABLE
+const addEmployee = () => {
+    connection.query('SELECT * FROM role', (err, roles) => {
+        if (err) console.log(err);
+        roles = roles.map((role) => {
+            return {
+                name: role.title,
+                value: role.id,
+            };
+        });
+        inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'firstName',
+                    message: 'What is the employees first name?'
+                },
+                {
+                    type: 'input',
+                    name: 'lastName',
+                    message: 'What is the employees last name?'
+                },
+                {
+                    type: 'list',
+                    name: 'role',
+                    message: 'What is the employees role?',
+                    choices: roles,
+                },
+                {
+                    type: 'list',
+                    name: 'managerId',
+                    message: 'select a manager id...',
+                    choices: [1, 3, 5, 6, 7]
+                }
+                // Update Manager portion later//
+            ])
+            .then((data) => {
+                console.log(data.role);
+                connection.query(
+                    'INSERT INTO employee SET ?',
+                    {
+                        first_name: data.firstName,
+                        last_name: data.lastName,
+                        role_id: data.role,
+                        manager_id: data.managerId
+                    },
+                    (err) => {
+                        if (err) throw err;
+                        console.log('Updated Employee Roster;');
+                        viewEmployees();
+
+                    }
+                );
+            });
+
+    });
+
+};
+
+
 connection.connect((err) => {
     if (err) throw err;
 
-
     menuPrompts();
-
 });
