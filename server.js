@@ -16,8 +16,9 @@ app.use(express.urlencoded({ extended: false }));
 // INTRO
 console.log('Welcome to my Employee_Tracker_App!');
 // USER MENU PROMPTS
-const menuPrompts = () => {
-    return inquirer .prompt({
+const menuPrompts = () => 
+ inquirer.prompt ([
+        {
             name: "userChoices",
             type: 'list',
             message: 'Please select what you would like to do.',
@@ -29,7 +30,47 @@ const menuPrompts = () => {
                 'Add A Role',
                 'Add A Employee',
                 'Update An Employee Role',
-                'Exit Menu',
-            ],
-        })
-};
+                'Exit Menu']
+        }
+    ])
+
+.then((answers) => {
+    const { choices } = answers; 
+
+    if (choices ===  'View All Departments') {
+      viewDepartments();
+    }
+    if (choices ==='View All Roles') {
+    viewRoles();
+    }
+    if (choices === 'View All Employees') {
+      viewEmployees();
+    }
+    if (choices ==='Add A Department') {
+      addDepartment();
+    }
+    if (choices ==='Add A Role') {
+      addRole();
+    }
+    if (choices ==='Add A Employee') {
+      addEmployee();
+    }
+    if (choices === 'Update An Employee Role') {
+      updateEmployee();
+    }
+    if (choices === "No Action") {
+      connection.end()
+  };
+});
+
+// VIEW ALL DEPARTMENTS
+viewDepartments = () => {
+    console.log('Viewing all departments...\n');
+    const sql = `SELECT department.id AS id, department.name AS department FROM department`; 
+  
+    connection.promise().query(sql, (err, rows) => {
+      if (err) throw err;
+      console.table(rows);
+      menuPrompts();
+    });
+  };
