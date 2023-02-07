@@ -243,6 +243,6 @@ const addEmployee = () => {
 
 connection.connect((err) => {
     if (err) throw err;
-    console.log('Your Database is connected!')
+    // console.log('Your Database is connected!')
     menuPrompts();
 });

@@ -5,7 +5,7 @@ VALUES  ('Kitchen Staff'),
         ('Floor Staff'),
         ('Bar Staff'),
         ('Delivery Staff'),
-        ('Managerial Staff'),
+        ('Managerial Staff');
 
 INSERT INTO role (title, salary, department_id)
 VALUES  ('Dishwasher', 20000, 1),
@@ -15,8 +15,9 @@ VALUES  ('Dishwasher', 20000, 1),
         ('Waitress', 29000, 2),
         ('Bartender', 32000, 3),
         ('Delivery Driver', 25000, 4),
-        ('Restaurant Manager', 65000, 5),
-
+        ('Restaurant Manager', 65000, 5);
+ 
+        
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES  ('ANNA', 'APPLE', 5, 9),
         ('BETTY', 'BERRY', 2, 9),
