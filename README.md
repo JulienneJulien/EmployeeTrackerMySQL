@@ -49,19 +49,18 @@
 >WHEN I choose to update an employee role
 >
 >THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
+
 ## Installation
 ***Please install the package locally to your working project directory.***
-- On your preferred code editor, use the command line to run `npm install  express`
-- If there is a package.json file in the directory in which npm install is run, npm installs the latest version of the package that satisfies the semantic versioning rule declared in package.json.
-- If there is no package.json file, the latest version of the package is installed.
+- On your preferred code editor, use the command line to run `npm i`.
+- The latest version of the required packages will be installed.
 
 
 ## Usage
 ***Please ensure you have followed above steps to install package first!***
-- Access your working directory project folder. Copy and paste the code below to run the application 
+- Access your working directory project folder to launch the application by running
 `node server.js`
-- This will activate the server that hosts the webpage at localhost:8000.
-- Once the **Note Taker** is opened, select the *get started* link to be brought to the notes page. 
+
 
 `A note can be created by adding a title, and a description, then clicking the save button to save the note, or by deleting the note by clicking the trash icon.`
 
