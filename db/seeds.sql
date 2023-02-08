@@ -1,11 +1,11 @@
-USE Business_db;
+USE employee_db;
 
 INSERT INTO department (name)
 VALUES  ('Kitchen Staff'),
         ('Floor Staff'),
         ('Bar Staff'),
         ('Delivery Staff'),
-        ('Managerial Staff');
+        ('Managerial Staff'),
 
 INSERT INTO role (title, salary, department_id)
 VALUES  ('Dishwasher', 20000, 1),
@@ -15,7 +15,7 @@ VALUES  ('Dishwasher', 20000, 1),
         ('Waitress', 29000, 2),
         ('Bartender', 32000, 3),
         ('Delivery Driver', 25000, 4),
-        ('Restaurant Manager', 65000, 5);
+        ('Restaurant Manager', 65000, 5),
  
         
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
@@ -25,6 +25,8 @@ VALUES  ('ANNA', 'APPLE', 5, 9),
         ('DAVID', 'DATES', 4, 9),
         ('EVAN', 'EGGPLANT', 4,9),
         ('FRANK', 'FRIES', 6, 9),
-        ('GREG', 'GUAVA', 7, 8),
+        ('GREG', 'GUAVA', 7, 2),
         ('HENRY', 'HAZELNUTS', 1, 2),
         ('ISAAC', 'ICECREAM', 8, NULL),
+
+
