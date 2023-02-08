@@ -235,63 +235,50 @@ const addEmployee = async () => {
       }
     }
 
-// UPDATE AN EMPLOYEE ROLE ???? Check back later to update!!!
-const updateEmployee = () => {
-    connection.query('SELECT * FROM employee', (err, employees) => {
-        if (err) console.log(err);
-        employees = employees.map((employee) => {
-            return {
-                name: `${employee.first_name} ${employee.last_name}`,
-                value: employee.id,
-            };
-        });
-        connection.query('SELECT * FROM role', (err, roles) => {
-            if (err) console.log(err);
-            roles = roles.map((role) => {
-                return {
-                    name: role.title,
-                    value: role.id,
-                }
-            });
-            inquirer
-                .prompt([
-                    {
-                        type: 'list',
-                        name: 'selectEmployee',
-                        message: 'Please select the employee to update',
-                        choices: employees,
-                    },
-                    {
-                        type: 'list',
-                        name: 'selectNewRole',
-                        message: 'Select new employee role...',
-                        choices: roles,
-                    },
-                ])
-                .then((data) => {
-                    connection.query('UPDATE employee SET ? WHERE ?',
-                        [
-                            {
-                                role_id: data.selectNewRole,
-                            },
-                            {
-                                id: data.selectEmployee,
-                            },
-                        ],
-                        function (err) {
-                            if (err) throw err;
-                        }
-                    );
-                    console.log('Employee role updated');
-                    viewRoles();
-                });
+// UPDATE AN EMPLOYEE ROLE 
 
-        });
-    });
+const updateEmployeeRole = async () => {
+    connection.query('SELECT last_name from employees', async (err, res) => {
+      try {
+        const { last_name } = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'last_name',
+            message: 'What is the last name of the employee whose role ID you wish to change?',
+            choices: res.map(({ last_name }) => last_name),
+          }
+        ]);
+  
+        const { role_id } = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'role_id',
+            message: 'What would you like the employee role to be updated to?',
+            choices: [
+  
+                { name: 'Dishwasher', value: 1 },
+                { name: 'Head Chef', value: 2 },
+                { name: 'Cashier', value: 3 },
+                { name: 'Waiter', value: 4 },
+                { name: 'Waitress', value: 5 },
+                { name: 'Bartender', value: 6 },
+                { name: 'Delivery Driver', value: 7 },
+                { name: 'Restaurant Manager', value: 8 },
+  
+            ]
+          }
+        ]);
+
+        const query = 'UPDATE employees SET role_id =? WHERE last_name =?';
+      connection.query(query, [parseInt(role_id), last_name], (err, res) => {
+        if (err) throw err;
+        console.log(`${last_name} Employee role updated to: ${role_id}`)
+
+      })
+      start();
+    } catch (error) {
+      console.log(error);
+      connection.end();
+    }
+  })
 };
-
-connection.connect((err) => {
-    if (err) throw err;
-    // console.log('Your Database is connected!')
-    menuPrompts();
-});
