@@ -67,6 +67,9 @@
 ***See the images and video below for demo.***
 ADD IMG/VIDS HERE
 
+![Screenshot_EE_Tracker_Tables_Preview](https://user-images.githubusercontent.com/117052258/217483972-c4bdb630-d5b2-44e5-9654-9561e374f484.png)
+
+
 ## Contributing
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
