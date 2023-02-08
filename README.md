@@ -14,7 +14,7 @@
   - [Questions](#questions)
 
 ## Description
-*Created a command-line application from scratch to manage a company's employee database. This application will use* ***Node.js, Inquirer, and MySQL***.
+*Created a command-line application from scratch to manage a company's employee database. The  * Employee Tracker App * makes it possible for managers or other corporate members to observe all personnel, jobs, and departments. Additionally, it enables updating of employees from your CLI as well as addition of employees, jobs, and departments. This application will use* ***Node.js, Inquirer, and MySQL***. 
 
 >GIVEN a command-line application that accepts user input
 >
@@ -62,7 +62,7 @@
 `node server.js`
 
 
-`A note can be created by adding a title, and a description, then clicking the save button to save the note, or by deleting the note by clicking the trash icon.`
+`This application can serve as a base upon which further development might be made. `
 
 ***See the images and video below for demo.***
 ADD IMG/VIDS HERE
