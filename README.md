@@ -65,7 +65,8 @@
 `This application can serve as a base upon which further development might be made. `
 
 ***See the images and video below for demo.***
-ADD IMG/VIDS HERE
+
+https://user-images.githubusercontent.com/117052258/217484183-f8c88a82-f07f-4862-92f2-d522df7f2e8e.mp4
 
 ![Screenshot_EE_Tracker_Tables_Preview](https://user-images.githubusercontent.com/117052258/217483972-c4bdb630-d5b2-44e5-9654-9561e374f484.png)
 
