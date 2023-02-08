@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 require('console.table');
 const mysql = require('mysql2');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2500;
 app.get("/", function (req, res) {
     res.send("HEY TESTING ROUTE");
 });
@@ -24,12 +24,12 @@ const connection = mysql.createConnection(
       user: 'root',
       // MySQL password
       password: 'Pass',
-      database: 'employee_db'
+      database: 'bus_EE_Tracker_db'
     });
 
   connection.connect(async (err) => {
     if (err) throw err;
-    console.log(`Connected to the employee_db database. ${connection.threadId}\n`);
+    console.log(`Connected to the bus_EE_Tracker_db database. ${connection.threadId}\n`);
     start();
   });
 
@@ -217,7 +217,7 @@ const addEmployee = async () => {
 
                 { name: 'BETTY BERRY', value: 2 },
                 { name: 'ISAAC ICECREAM', value: 9 },
-                { name: 'None', value: NULL }
+                { name: 'None', value: null}
 
             ]
             }
