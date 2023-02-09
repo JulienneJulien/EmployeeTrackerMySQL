@@ -16,6 +16,7 @@
 ## Description
 *Created a command-line application from scratch to manage a company's employee database. The  **Employee Tracker App** makes it possible for managers or other corporate members to observe all personnel, jobs, and departments. Additionally, it enables updating of employees from your CLI as well as addition of employees, jobs, and departments. This application will use* ***Node.js, Inquirer,  console.table package  and MySQL***. 
 
+
 >GIVEN a command-line application that accepts user input
 >
 >WHEN I start the application
@@ -69,7 +70,6 @@
 https://user-images.githubusercontent.com/117052258/217484183-f8c88a82-f07f-4862-92f2-d522df7f2e8e.mp4
 
 ![Screenshot_EE_Tracker_Tables_Preview](https://user-images.githubusercontent.com/117052258/217483972-c4bdb630-d5b2-44e5-9654-9561e374f484.png)
-
 
 ## Contributing
 
